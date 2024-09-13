@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">QR Code Generator - Free Customizable QR Code Online Generator</title>
+
+    <meta name="description" content="Free online QR code generator, no login required to quickly create custom QR codes. Supports text, URL, file upload and more, customizable QR code size, color, logo, etc., easily generate various format high quality QR codes.">
+    <meta name="keywords" content="QR Code Generator, QR Code Maker, Online QR Code Creator, Free QR Code, Custom QR Code, QR Code Logo, QR Code Color, QR Code Size, QR Code Description, QR Code Share">
+    <meta name="author" content="Lemo`s Studio">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.your-qr-generator-website.com/">
+    <meta property="og:title" content="QR Code Generator - Free Customizable QR Code Online Generator">
+    <meta property="og:description" content="Free online QR code generator, no login required to quickly create custom QR codes. Supports various customization options.">
+    <meta property="og:image" content="https://www.your-qr-generator-website.com/og-image.jpg">
+    <meta property="og:url" content="https://www.your-qr-generator-website.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Generator - Free Customizable QR Code Online Generator">
+    <meta name="twitter:description" content="Free online QR code generator, no login required to quickly create custom QR codes. Supports various customization options.">
+    <meta name="twitter:image" content="https://www.your-qr-generator-website.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "QR Code Generator",
+          "description": "Free online QR code generator, supports customizable QR code color, logo, style, size, format and auxiliary description.",
+          "url": "https://www.your-qr-generator-website.com/",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0"
+          }
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('background.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        /* To ensure readability, add a semi-transparent white overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* White semi-transparent overlay */
+            z-index: -1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 0px;
+        }
+        main {
+            flex: 1;
+
+        }
+        select option {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-qrcode text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold" data-i18n="title">QR Code Generator</h1>
+            </div>
+            <div class="flex items-center">
+                <div class="relative group mr-4" id="languageMenu">
+                    <button id="languageButton" class="flex items-center">
+                        <i class="fas fa-globe mr-2"></i>
+                        <span data-i18n="currentLanguage">English</span>
+                        <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                    <div id="languageOptions" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="en">English</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="zh-CN">简体中文</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="zh-TW">繁體中文</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="fr">Français</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="de">Deutsch</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="es">Español</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="ja">日本語</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="ar">العربية</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="ru">Русский</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" data-lang="la">Latina</a>
+                    </div>
+                </div>
+                <button id="helpBtn" class="flex items-center">
+                    <i class="fas fa-question-circle mr-2"></i>
+                    <span data-i18n="help">Help</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="flex flex-wrap -mx-4">
+            <!-- Input Area -->
+            <div class="w-full lg:w-1/3 px-4 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4" data-i18n="input">Input</h2>
+                    <div class="mb-4">
+                        <div class="flex border-b border-gray-200">
+                            <button class="py-2 px-4 text-sm font-medium text-blue-600 bg-white rounded-t-lg border-b-2 border-blue-600 active" id="textTab" data-i18n="text">Text</button>
+                            <button class="py-2 px-4 text-sm font-medium text-gray-500 bg-white rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="urlTab" data-i18n="url">URL</button>
+                            <button class="py-2 px-4 text-sm font-medium text-gray-500 bg-white rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="fileTab" data-i18n="fileUpload">File Upload</button>
+                        </div>
+                    </div>
+                    <div id="textInputContainer" class="relative mb-6">
+                        <label for="textInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="text">Text</label>
+                        <textarea id="textInput" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" data-i18n-placeholder="enterText" maxlength="255"></textarea>
+                        <button id="clearTextBtn" class="absolute top-8 right-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                        <div id="charCount" class="text-sm text-blue-500 text-right mt-1">0/255</div>
+                    </div>
+                    <div id="urlInputContainer" class="hidden relative">
+                        <label for="urlInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="url">URL</label>
+                        <input type="url" id="urlInput" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter URL">
+                        <button id="clearUrlBtn" class="absolute top-8 right-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </div>
+                    <div id="fileInputContainer" class="hidden">
+                        <label for="fileInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="fileUpload">File Upload</label>
+                        <input type="file" id="fileInput" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button id="clearFileBtn" class="mt-2 text-sm text-gray-600 hover:text-gray-800 flex items-center">
+                            <i class="fas fa-trash-alt mr-1"></i> Clear selected file
+                        </button>
+                    </div>
+                    <button id="generateBtn" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mt-4 flex items-center justify-center">
+                        <i class="fas fa-qrcode mr-2"></i> <span data-i18n="generate">Generate QR Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div class="w-full lg:w-1/3 px-4 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+                    <h2 class="text-xl font-semibold mb-4" data-i18n="preview">Preview</h2>
+                    <div id="qrcode" class="w-64 h-64 flex items-center justify-center mb-4" style="min-width: 250px; min-height: 250px; max-width: 250px; max-height: 250px;">
+                        <!-- Default gray QR code -->
+                        <svg width="100%" height="100%" viewBox="0 0 250 250">
+                            <rect width="250" height="250" fill="#f0f0f0"/>
+                            <path d="M31.25,31.25 h187.5v187.5h-187.5z M62.5,62.5 h125v125h-125z" fill="#d0d0d0" fill-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <p id="qrDescription" class="text-center mb-4 text-gray-500" data-i18n="qrDescription">QR code to be generated</p>
+                    <div class="flex space-x-4">
+                        <button id="downloadBtn" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 flex items-center" disabled>
+                            <i class="fas fa-download mr-2"></i> <span data-i18n="download">Download</span>
+                        </button>
+                        <button id="shareBtn" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 flex items-center" disabled>
+                            <i class="fas fa-share-alt mr-2"></i> <span data-i18n="share">Share</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customization Area -->
+            <div class="w-full lg:w-1/3 px-4">
+                <div class="bg-white rounded-lg shadow-lg p-6 overflow-y-auto custom-scrollbar" style="max-height: calc(100vh - 12rem);">
+                    <h2 class="text-xl font-semibold mb-4" data-i18n="customize">Customize</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="size" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="size">Size (<span id="sizeValue">250</span>px)</label>
+                            <input id="size" type="range" min="100" max="250" value="250" class="w-full">
+                        </div>
+                        
+                        <div class="p-4 border border-gray-200 rounded-md">
+                            <h3 class="text-lg font-medium mb-2" data-i18n="colorSettings">Color Settings</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="fgColor" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="fgColor">Foreground Color</label>
+                                    <input id="fgColor" type="color" value="#000000" class="w-full h-10">
+                                </div>
+                                <div>
+                                    <label for="bgColor" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="bgColor">Background Color</label>
+                                    <input id="bgColor" type="color" value="#ffffff" class="w-full h-10">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="level" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="errorLevel">Error Correction Level</label>
+                            <select id="level" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="L" data-i18n="errorLevelL">Low (can cover 7%)</option>
+                                <option value="M" selected data-i18n="errorLevelM">Medium (can cover 15%)</option>
+                                <option value="Q" data-i18n="errorLevelQ">High (can cover 25%)</option>
+                                <option value="H" data-i18n="errorLevelH">Highest (can cover 30%)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="p-4 border border-gray-200 rounded-md">
+                            <h3 class="text-lg font-medium mb-2" data-i18n="logoSettings">Logo Settings</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" id="enableLogo" class="form-checkbox">
+                                        <span class="ml-2" data-i18n="enableLogo">Enable Logo</span>
+                                    </label>
+                                </div>
+                                <div id="logoOptions" class="hidden space-y-4">
+                                    <div>
+                                        <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="uploadLogo">Upload Logo</label>
+                                        <input type="file" id="logoUpload" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="logoShape">Logo Shape</label>
+                                        <div class="flex space-x-4">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" name="logoShape" value="square" class="form-radio" checked>
+                                                <span class="ml-2" data-i18n="square">Square</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" name="logoShape" value="circle" class="form-radio">
+                                                <span class="ml-2" data-i18n="circle">Circle</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" name="logoShape" value="rounded" class="form-radio">
+                                                <span class="ml-2" data-i18n="rounded">Rounded</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 border border-gray-200 rounded-md">
+                            <h3 class="text-lg font-medium mb-2" data-i18n="textDescription">Text Description Settings</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" id="enableTextDescription" class="form-checkbox">
+                                        <span class="ml-2" data-i18n="enableTextDescription">Enable Text Description</span>
+                                    </label>
+                                </div>
+                                <div id="textDescriptionOptions" class="hidden space-y-4">
+                                    <div>
+                                        <label for="textDescriptionInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="descriptionText">Description Text (max 15 characters)</label>
+                                        <textarea id="textDescriptionInput" rows="2" maxlength="15" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                                        <div id="textDescriptionCharCount" class="text-sm text-gray-500 text-right mt-1">0/15</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="resetBtn" class="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-undo mr-2"></i> <span data-i18n="reset">Reset to Default Settings</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-auto">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+            <p class="mb-2 sm:mb-0">&copy; 2024 QR Code Generator. All rights reserved.</p>
+            <nav class="flex space-x-4">
+                <a href="#" class="hover:text-blue-300" data-i18n="privacyPolicy">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-300" data-i18n="termsOfUse">Terms of Use</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="howToUse">How to Use QR Code Generator</h2>
+            <ol class="list-decimal list-inside space-y-2 mb-6">
+                <li data-i18n="enterTextUrlOrFile">Enter text, URL, or upload a file in the input area.</li>
+                <li data-i18n="customizeOptions">Customize the appearance of the QR code using the options.</li>
+                <li data-i18n="clickGenerate">Click the "Generate QR Code" button to create your QR code.</li>
+                <li data-i18n="downloadOrShare">Use the download or share buttons to save or share your QR code.</li>
+            </ol>
+            <h3 class="text-xl font-semibold mb-2" data-i18n="needHelp">Need Help?</h3>
+            <p class="mb-4" data-i18n="contactUs">If you have any questions or need help, please contact us:</p>
+            <p>Email: support@qrcodegenerator.com</p>
+            <button id="closeHelpBtn" class="mt-6 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 flex items-center justify-center">
+                <i class="fas fa-times mr-2"></i> <span data-i18n="close">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Replace the original script tag with the following -->
+    <script type="module" src="main.js"></script>
+    <script type="module" src="qrGenerator.js"></script>
+    <script type="module" src="customization.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="i18n.js"></script>
+</body>
+</html>
