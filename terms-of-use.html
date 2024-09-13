@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('background.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-qrcode text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">QR Code Generator</h1>
+            </div>
+            <div class="flex items-center">
+                <button id="helpBtn" class="flex items-center" onclick="window.location.href='index.html'">
+                    <i class="fas fa-question-circle mr-2"></i>
+                    Home
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 flex-grow">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Terms of Use</h1>
+        <p class="text-gray-700 mb-4"><strong>TLDR;</strong> Don't do anything dodgy, we're not responsible if the site burns down.</p>
+        
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">These Terms and Conditions</h2>
+        <p class="text-gray-700 mb-4">These Terms and Conditions ("Terms") govern your use of the Cursorcasts website and services. By using the Cursorcasts website and services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not use the Cursorcasts website or services.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Acceptable Use</h2>
+        <p class="text-gray-700 mb-4">You may not use the Cursorcasts website or services for any illegal or unauthorized purpose. You may not use the Cursorcasts website or services in a way that violates any laws or regulations in your jurisdiction.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Purchases</h2>
+        <p class="text-gray-700 mb-4">If you purchase a subscription to Cursorcasts, you agree to pay the subscription fee in accordance with the payment terms in effect at the time of purchase. You agree to pay all applicable taxes. You agree that your subscription will automatically renew at the end of the subscription period, and you authorize us to charge your payment method for the renewal fee. You may cancel your subscription at any time by contacting us.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Refunds</h2>
+        <p class="text-gray-700 mb-4">We do not offer refunds for purchases of subscriptions to Cursorcasts.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Availability</h2>
+        <p class="text-gray-700 mb-4">We make no guarantee that the Cursorcasts website or services will be available at all times. We may suspend or terminate your access to the Cursorcasts website or services at any time for any reason.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Accounts</h2>
+        <p class="text-gray-700 mb-4">When you create an account on the Cursorcasts website, you agree to provide accurate and complete information. You agree to update your account information if it changes.</p>
+        <p class="text-gray-700 mb-4">By signing up for an account, you agree to these Terms and our Privacy Policy.</p>
+        <p class="text-gray-700 mb-4">You are responsible for maintaining the security of your account and password. You are responsible for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account.</p>
+        <p class="text-gray-700 mb-4">You agree not to disclose your account credentials to any third party.</p>
+        <p class="text-gray-700 mb-4">You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than you, without appropriate authorization. You may not use as a username any name that is offensive, vulgar or obscene.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Newsletter</h2>
+        <p class="text-gray-700 mb-4">When you sign up for an account, you will be added to our newsletter. You can opt out at any time by clicking the unsubscribe link in any email.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Limitation of Liability</h2>
+        <p class="text-gray-700 mb-4">In no event will Cursorcasts be liable to you for any indirect, consequential, exemplary, incidental, special or punitive damages, including lost profits, even if Cursorcasts has been advised of the possibility of such damages.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Indemnification</h2>
+        <p class="text-gray-700 mb-4">You agree to indemnify and hold Cursorcasts harmless from any claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your breach of these Terms or the documents they incorporate by reference, or your violation of any law or the rights of a third party.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Disclaimer</h2>
+        <p class="text-gray-700 mb-4">Your use of the Cursorcasts website and services is at your sole risk. The Cursorcasts website and services are provided on an "AS IS" and "AS AVAILABLE" basis. Cursorcasts expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to the implied warranties of merchantability, fitness for a particular purpose and non-infringement.</p>
+        <p class="text-gray-700 mb-4">Cursorcasts makes no warranty that (i) the Cursorcasts website or services will meet your requirements, (ii) the Cursorcasts website or services will be uninterrupted, timely, secure, or error-free, (iii) the results that may be obtained from the use of the Cursorcasts website or services will be accurate or reliable, or (iv) the quality of any products, services, information, or other material purchased or obtained by you through the Cursorcasts website or services will meet your expectations.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Governing Law</h2>
+        <p class="text-gray-700 mb-4">These Terms shall be governed and construed in accordance with the laws of United Kingdom, without regard to its conflict of law provisions.</p>
+        <p class="text-gray-700 mb-4">Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Changes to These Terms</h2>
+        <p class="text-gray-700 mb-4">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+        <p class="text-gray-700 mb-4">By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Contact Us</h2>
+        <p class="text-gray-700 mb-4">If you have any questions about these Terms, please contact us.</p>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-auto">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+            <p class="mb-2 sm:mb-0">&copy; 2024 QR Code Generator. All rights reserved.</p>
+            <nav class="flex space-x-4">
+                <a href="privacy-policy.html" class="hover:text-blue-300">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-300">Terms of Use</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
