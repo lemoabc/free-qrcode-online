@@ -9,16 +9,16 @@
     <meta name="keywords" content="QR Code Generator, QR Code Maker, Online QR Code Creator, Free QR Code, Custom QR Code, QR Code Logo, QR Code Color, QR Code Size, QR Code Description, QR Code Share">
     <meta name="author" content="Lemo`s Studio">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.your-qr-generator-website.com/">
+    <link rel="canonical" href="https://lemoabc.github.io/free-qrcode-online/">
     <meta property="og:title" content="QR Code Generator - Free Customizable QR Code Online Generator">
     <meta property="og:description" content="Free online QR code generator, no login required to quickly create custom QR codes. Supports various customization options.">
-    <meta property="og:image" content="https://www.your-qr-generator-website.com/og-image.jpg">
-    <meta property="og:url" content="https://www.your-qr-generator-website.com/">
+    <meta property="og:image" content="https://lemoabc.github.io/free-qrcode-online/og-image.jpg">
+    <meta property="og:url" content="https://lemoabc.github.io/free-qrcode-online/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="QR Code Generator - Free Customizable QR Code Online Generator">
     <meta name="twitter:description" content="Free online QR code generator, no login required to quickly create custom QR codes. Supports various customization options.">
-    <meta name="twitter:image" content="https://www.your-qr-generator-website.com/twitter-image.jpg">
+    <meta name="twitter:image" content="https://lemoabc.github.io/free-qrcode-online/twitter-image.jpg">
     
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -31,7 +31,7 @@
           "@type": "WebApplication",
           "name": "QR Code Generator",
           "description": "Free online QR code generator, supports customizable QR code color, logo, style, size, format and auxiliary description.",
-          "url": "https://www.your-qr-generator-website.com/",
+          "url": "https://lemoabc.github.io/free-qrcode-online/",
           "applicationCategory": "UtilityApplication",
           "operatingSystem": "All",
           "offers": {
@@ -132,7 +132,7 @@
                     </div>
                     <div id="textInputContainer" class="relative mb-6">
                         <label for="textInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="text">Text</label>
-                        <textarea id="textInput" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" data-i18n-placeholder="enterText" maxlength="255"></textarea>
+                        <textarea id="textInput" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" data-i18n-placeholder="enterText" maxlength="255" placeholder="Enter text (max 255 characters)"></textarea>
                         <button id="clearTextBtn" class="absolute top-8 right-2 text-gray-400 hover:text-gray-600">
                             <i class="fas fa-times-circle"></i>
                         </button>
@@ -145,11 +145,18 @@
                             <i class="fas fa-times-circle"></i>
                         </button>
                     </div>
-                    <div id="fileInputContainer" class="hidden">
+                    <div id="fileInputContainer" class="hidden relative">
                         <label for="fileInput" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="fileUpload">File Upload</label>
-                        <input type="file" id="fileInput" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <button id="clearFileBtn" class="mt-2 text-sm text-gray-600 hover:text-gray-800 flex items-center">
-                            <i class="fas fa-trash-alt mr-1"></i> Clear selected file
+                        <div class="relative">
+                            <input type="file" id="fileInput" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.csv,.md,.png,.svg">
+                            <label for="fileInput" class="cursor-pointer flex items-center justify-center w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-file-upload mr-2"></i>
+                                <span data-i18n="fileUpload">File Upload</span>
+                            </label>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500" data-i18n="fileUploadHint">Supported formats: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Max 5MB)</p>
+                        <button id="clearFileBtn" class="absolute top-8 right-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times-circle"></i>
                         </button>
                     </div>
                     <button id="generateBtn" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mt-4 flex items-center justify-center">
@@ -187,7 +194,7 @@
                     <h2 class="text-xl font-semibold mb-4" data-i18n="customize">Customize</h2>
                     <div class="space-y-6">
                         <div>
-                            <label for="size" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="size">Size (<span id="sizeValue">250</span>px)</label>
+                            <label for="size" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="size">Size</label>
                             <input id="size" type="range" min="100" max="250" value="250" class="w-full">
                         </div>
                         
@@ -227,7 +234,13 @@
                                 <div id="logoOptions" class="hidden space-y-4">
                                     <div>
                                         <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-1" data-i18n="uploadLogo">Upload Logo</label>
-                                        <input type="file" id="logoUpload" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <div class="relative">
+                                            <input type="file" id="logoUpload" accept="image/*" class="hidden">
+                                            <label for="logoUpload" class="cursor-pointer flex items-center justify-center w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-700 hover:bg-gray-50">
+                                                <i class="fas fa-upload mr-2"></i>
+                                                <span data-i18n="uploadLogo">Upload Logo</span>
+                                            </label>
+                                        </div>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="logoShape">Logo Shape</label>

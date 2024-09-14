@@ -58,7 +58,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'This is my generated QR code',
         'qrCodeShared': 'QR code shared successfully',
         'qrCodeLinkCopiedToClipboard': 'QR code link copied to clipboard',
-        'copyFailed': 'Copy failed, please try again'
+        'copyFailed': 'Copy failed, please try again',
+        'sharing': 'sharing...',
+        'shareFailed': 'Share failed. Please try again.',
+        'fileUploadHint': 'Supported formats: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Max 5MB)',
+        'generatedUrlQRCode': 'Generated URL QR Code',
+        'generatedFileQRCode': 'Generated File QR Code',
+        'generatedTextQRCode': 'Generated Text QR Code'
     },
     'zh-CN': {
         'currentLanguage': '简体中文',
@@ -119,7 +125,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': '这是我生成的二维码',
         'qrCodeShared': '二维码分享成功',
         'qrCodeLinkCopiedToClipboard': '二维码链接已复制到剪贴板',
-        'copyFailed': '复制失败，请重试'
+        'copyFailed': '复制失败，请重试',
+        'sharing': '正在分享...',
+        'shareFailed': '分享失败，请重试。',
+        'fileUploadHint': '支持的格式：PDF、Word、Excel、TXT、CSV、MD、PNG、SVG（最大5MB）',
+        'generatedUrlQRCode': '生成的URL二维码',
+        'generatedFileQRCode': '生成的文件二维码',
+        'generatedTextQRCode': '生成的文本二维码'
     },
     'zh-TW': {
         'currentLanguage': '繁體中文',
@@ -180,7 +192,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': '這是我生成的二維碼',
         'qrCodeShared': '二維碼分享成功',
         'qrCodeLinkCopiedToClipboard': '二維碼鏈接已複製到剪貼板',
-        'copyFailed': '複製失敗，請重試'
+        'copyFailed': '複製失敗，請重試',
+        'sharing': '正在分享...',
+        'shareFailed': '分享失敗，請重試。',
+        'fileUploadHint': '支援的格式：PDF、Word、Excel、TXT、CSV、MD、PNG、SVG（最大5MB）',
+        'generatedUrlQRCode': '生成的URL二維碼',
+        'generatedFileQRCode': '生成的文件二維碼',
+        'generatedTextQRCode': '生成的文本二維碼'
     },
     'fr': {
         'currentLanguage': 'Français',
@@ -241,7 +259,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'Voici mon code QR généré',
         'qrCodeShared': 'Code QR partagé avec succès',
         'qrCodeLinkCopiedToClipboard': 'Lien du code QR copié dans le presse-papiers',
-        'copyFailed': 'Échec de la copie, veuillez réessayer'
+        'copyFailed': 'Échec de la copie, veuillez réessayer',
+        'sharing': 'Partage en cours...',
+        'shareFailed': 'Le partage a échoué. Veuillez réessayer.',
+        'fileUploadHint': 'Formats pris en charge : PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Max 5 Mo)',
+        'generatedUrlQRCode': 'Code QR d\'URL généré',
+        'generatedFileQRCode': 'Code QR de fichier généré',
+        'generatedTextQRCode': 'Code QR de texte généré'
     },
     'de': {
         'currentLanguage': 'Deutsch',
@@ -302,7 +326,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'Dies ist mein generierter QR-Code',
         'qrCodeShared': 'QR-Code erfolgreich geteilt',
         'qrCodeLinkCopiedToClipboard': 'QR-Code-Link in die Zwischenablage kopiert',
-        'copyFailed': 'Kopieren fehlgeschlagen, bitte versuchen Sie es erneut'
+        'copyFailed': 'Kopieren fehlgeschlagen, bitte versuchen Sie es erneut',
+        'sharing': 'Teilen...',
+        'shareFailed': 'Teilen fehlgeschlagen. Bitte versuchen Sie es erneut.',
+        'fileUploadHint': 'Unterstützte Formate: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Max. 5MB)',
+        'generatedUrlQRCode': 'Generierter URL-QR-Code',
+        'generatedFileQRCode': 'Generierter Datei-QR-Code',
+        'generatedTextQRCode': 'Generierter Text-QR-Code'
     },
     'es': {
         'currentLanguage': 'Español',
@@ -363,7 +393,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'Este es mi código QR generado',
         'qrCodeShared': 'Código QR compartido con éxito',
         'qrCodeLinkCopiedToClipboard': 'Enlace del código QR copiado al portapapeles',
-        'copyFailed': 'Error al copiar, por favor intente de nuevo'
+        'copyFailed': 'Error al copiar, por favor intente de nuevo',
+        'sharing': 'Compartiendo...',
+        'shareFailed': 'Error al compartir. Por favor, inténtelo de nuevo.',
+        'fileUploadHint': 'Formatos admitidos: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Máx. 5MB)',
+        'generatedUrlQRCode': 'Código QR de URL generado',
+        'generatedFileQRCode': 'Código QR de archivo generado',
+        'generatedTextQRCode': 'Código QR de texto generado'
     },
     'ja': {
         'currentLanguage': '日本語',
@@ -424,7 +460,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'これは私が生成したQRコードです',
         'qrCodeShared': 'QRコードが正常に共有されました',
         'qrCodeLinkCopiedToClipboard': 'QRコードのリンクがクリップボードにコピーされました',
-        'copyFailed': 'コピーに失敗しました。もう一度お試しください'
+        'copyFailed': 'コピーに失敗しました。もう一度お試しください',
+        'sharing': '共有中...',
+        'shareFailed': '共有に失敗しました。もう一度お試しください。',
+        'fileUploadHint': '対応フォーマット：PDF、Word、Excel、TXT、CSV、MD、PNG、SVG（最大5MB）',
+        'generatedUrlQRCode': '生成されたURLのQRコード',
+        'generatedFileQRCode': '生成されたファイルのQRコード',
+        'generatedTextQRCode': '生成されたテキストのQRコード'
     },
     'ar': {
         'currentLanguage': 'العربية',
@@ -485,7 +527,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'هذا هو رمز الاستجابة السريعة الذي تم إنشاؤه',
         'qrCodeShared': 'تمت مشاركة رمز الاستجابة السريعة بنجاح',
         'qrCodeLinkCopiedToClipboard': 'تم نسخ رابط رمز الاستجابة السريعة إلى الحافظة',
-        'copyFailed': 'فشل النسخ، يرجى المحاولة مرة أخرى'
+        'copyFailed': 'فشل النسخ، يرجى المحاولة مرة أخرى',
+        'sharing': 'جارٍ المشاركة...',
+        'shareFailed': 'فشلت المشاركة. يرجى المحاولة مرة أخرى.',
+        'fileUploadHint': 'الصيغ المدعومة: PDF، Word، Excel، TXT، CSV، MD، PNG، SVG (الحد الأقصى 5 ميجابايت)',
+        'generatedUrlQRCode': 'رمز QR للرابط المُنشأ',
+        'generatedFileQRCode': 'رمز QR للملف المُنشأ',
+        'generatedTextQRCode': 'رمز QR للنص المُنشأ'
     },
     'ru': {
         'currentLanguage': 'Русский',
@@ -546,7 +594,13 @@ const translations = {
         'thisIsMyGeneratedQRCode': 'Это мой сгенерированный QR-код',
         'qrCodeShared': 'QR-код успешно поделился',
         'qrCodeLinkCopiedToClipboard': 'Ссылка на QR-код скопирована в буфер обмена',
-        'copyFailed': 'Не удалось скопировать, пожалуйста, попробуйте еще раз'
+        'copyFailed': 'Не удалось скопировать, пожалуйста, попробуйте еще раз',
+        'sharing': 'Идет обмен...',
+        'shareFailed': 'Не удалось поделиться. Пожалуйста, попробуйте еще раз.',
+        'fileUploadHint': 'Поддерживаемые форматы: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (макс. 5 МБ)',
+        'generatedUrlQRCode': 'Сгенерированный QR-код URL',
+        'generatedFileQRCode': 'Сгенерированный QR-код файла',
+        'generatedTextQRCode': 'Сгенерированный QR-код текста'
     },
     'la': {
         'currentLanguage': 'Latina',
@@ -601,13 +655,19 @@ const translations = {
         'qrDescription': 'QR Code generandus',
         'selectDownloadFormat': 'Select Download Format',
         'qrCode': 'QR Code',
-        'qrCodeDownloadedAs': 'QR Code downloaded as',
+        'qrCodeDownloadedAs': 'QR code downloaded as',
         'pleaseGenerateQRCodeFirst': 'Quaeso primum genera QR Code',
         'shareQRCode': 'Communica QR Code',
         'thisIsMyGeneratedQRCode': 'Hic est meus QR Code generatus',
         'qrCodeShared': 'QR Code communicatus est cum successu',
         'qrCodeLinkCopiedToClipboard': 'Link QR Code in clipboard copiata est',
-        'copyFailed': 'Copiendum defecit, quaeso iterum conare'
+        'copyFailed': 'Copiendum defecit, quaeso iterum conare',
+        'sharing': 'Communicans...',
+        'shareFailed': 'Communicatio defecit. Quaeso, iterum conare.',
+        'fileUploadHint': 'Formata sustentata: PDF, Word, Excel, TXT, CSV, MD, PNG, SVG (Max 5MB)',
+        'generatedUrlQRCode': 'QR Code URL generatus',
+        'generatedFileQRCode': 'QR Code file generatus',
+        'generatedTextQRCode': 'QR Code textus generatus'
     }
 };
 
@@ -645,6 +705,12 @@ function updatePageLanguage() {
     const languageButton = document.getElementById('languageButton');
     if (languageButton) {
         languageButton.querySelector('span').textContent = getTranslation('currentLanguage');
+    }
+
+    // 更新分享按钮文本
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+        shareBtn.textContent = getTranslation('share');
     }
 }
 

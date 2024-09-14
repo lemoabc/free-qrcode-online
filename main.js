@@ -64,17 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 await generateQRCode(text, inputType);
                 console.log('二维码生成完成');
                 clearInputs();
-                
-                // 添加延迟检查
-                setTimeout(() => {
-                    const qrcodeDiv = document.getElementById('qrcode');
-                    console.log('延迟检查 qrcodeDiv 的内容:', qrcodeDiv.innerHTML);
-                    console.log('延迟检查 qrcodeDiv 的样式:', window.getComputedStyle(qrcodeDiv));
-                    const svgElement = qrcodeDiv.querySelector('svg');
-                    if (svgElement) {
-                        console.log('SVG 元素的样式:', window.getComputedStyle(svgElement));
-                    }
-                }, 100);
             } else {
                 showToast(getTranslation('pleaseEnterContentOrSelectFile'), 'error');
             }
@@ -90,7 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 添加分享按钮的事件监听器
-    shareBtn.addEventListener('click', shareQRCode);
+    shareBtn.addEventListener('click', async () => {
+        await shareQRCode();
+    });
 
     initCustomization();
     initUI();
@@ -272,30 +263,40 @@ document.addEventListener('DOMContentLoaded', () => {
         img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
     }
 
-    function shareQRCode() {
-        const svg = document.querySelector('#qrcode svg');
-        if (!svg) {
-            showToast(getTranslation('pleaseGenerateQRCodeFirst'), 'error');
-            return;
-        }
+    async function shareQRCode() {
+        const shareBtn = document.getElementById('shareBtn');
+        // const originalText = shareBtn.textContent;
+        shareBtn.disabled = true;
+        shareBtn.textContent = getTranslation('sharing');
+        try {
+            const svg = document.querySelector('#qrcode svg');
+            if (!svg) {
+                throw new Error('Please generate QR code first');
+            }
 
-        const svgData = new XMLSerializer().serializeToString(svg);
-        const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
-        const svgUrl = URL.createObjectURL(svgBlob);
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const svgUrl = URL.createObjectURL(svgBlob);
 
-        if (navigator.share) {
-            navigator.share({
-                title: getTranslation('shareQRCode'),
-                text: getTranslation('thisIsMyGeneratedQRCode'),
-                files: [new File([svgBlob], `${getTranslation('qrCode')}.svg`, { type: 'image/svg+xml' })]
-            }).then(() => {
+            if (navigator.share) {
+                await Promise.race([
+                    navigator.share({
+                        title: getTranslation('shareQRCode'),
+                        text: getTranslation('thisIsMyGeneratedQRCode'),
+                        files: [new File([svgBlob], `${getTranslation('qrCode')}.svg`, { type: 'image/svg+xml' })]
+                    }),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Share operation timed out')), 10000))
+                ]);
                 showToast(getTranslation('qrCodeShared'), 'success');
-            }).catch((error) => {
-                console.error('分享失败:', error);
-                fallbackShare(svgUrl);
-            });
-        } else {
-            fallbackShare(svgUrl);
+            } else {
+                await fallbackShare(svgUrl);
+            }
+        } catch (error) {
+            console.error('分享失败:', error);
+            showToast(getTranslation('shareFailed'), 'error');
+        } finally {
+            shareBtn.disabled = false;
+            shareBtn.textContent = getTranslation('share');
         }
     }
 
@@ -320,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
         console.log('延迟检查 qrcodeDiv 的内容:', document.getElementById('qrcode').innerHTML);
-        console.log('延迟检查 qrcodeDiv 的样式:', window.getComputedStyle(document.getElementById('qrcode')));
+        // console.log('延迟检查 qrcodeDiv 的样式:', window.getComputedStyle(document.getElementById('qrcode')));
     }, 100);
 });
 

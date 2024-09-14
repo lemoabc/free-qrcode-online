@@ -1,13 +1,15 @@
 import { qrOptions } from './customization.js';
 import { showToast } from './ui.js';
 import { isValidUrl } from './utils.js';
+import { getTranslation } from './i18n.js';
 
 export async function generateQRCode(text, inputType) {
-    console.log('开始生成二维码，输入类型:', inputType);
+    console.log('generateQRCode 函数开始执行');
+    console.log('输入文本:', text, '输入类型:', inputType);
     console.log('当前 qrOptions:', JSON.stringify(qrOptions, null, 2));
 
     if (!text) {
-        showToast('请输入内容或选择文件');
+        showToast(getTranslation('pleaseEnterContentOrSelectFile'), 'error');
         return;
     }
 
@@ -61,21 +63,13 @@ export async function generateQRCode(text, inputType) {
 
             // 添加 Logo
             if (qrOptions.logoEnabled && qrOptions.logo) {
-                const logoSize = Math.floor(qrOptions.size / 5); // 稍微增大 logo 尺寸
+                const logoSize = Math.floor(qrOptions.size / 5);
                 const logoX = Math.floor((qrOptions.size - logoSize) / 2);
                 const logoY = Math.floor((qrOptions.size - logoSize) / 2);
-
-                console.log('Logo 位置和大小:', {
-                    size: logoSize,
-                    x: logoX,
-                    y: logoY,
-                    qrSize: qrOptions.size
-                });
 
                 const logoGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
                 logoGroup.setAttribute('transform', `translate(${logoX}, ${logoY})`);
 
-                // 创建一个剪切路径
                 const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
                 clipPath.setAttribute("id", "logoClip");
 
@@ -104,74 +98,58 @@ export async function generateQRCode(text, inputType) {
                 clipPath.appendChild(clipShape);
                 svgElement.appendChild(clipPath);
 
-                // 添加一个与背景色相同的边框
+                // 添加与背景色相同的边框
                 const logoBorder = clipShape.cloneNode(true);
                 logoBorder.setAttribute("fill", "none");
                 logoBorder.setAttribute("stroke", qrOptions.bgColor);
-                logoBorder.setAttribute("stroke-width", "4");
+                logoBorder.setAttribute("stroke-width", "4"); // 2px 边框，但因为边框会向内外各延伸 1px，所以设置为 4
                 logoGroup.appendChild(logoBorder);
 
                 const logoImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
                 logoImage.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", qrOptions.logo);
                 logoImage.setAttribute("width", logoSize);
                 logoImage.setAttribute("height", logoSize);
-                logoImage.setAttribute("x", 0);
-                logoImage.setAttribute("y", 0);
                 logoImage.setAttribute("clip-path", "url(#logoClip)");
 
                 logoGroup.appendChild(logoImage);
                 svgElement.appendChild(logoGroup);
+
+                console.log('Logo 已添加到 QR 码，带有背景色边框');
+            }
+
+            // 添加文字描述（如果启用）
+            if (qrOptions.textDescriptionEnabled && qrOptions.textDescription) {
+                const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                textElement.setAttribute("x", qrOptions.size / 2);
+                textElement.setAttribute("y", qrOptions.size + 20); // 将文字放在 QR 码下方
+                textElement.setAttribute("text-anchor", "middle");
+                textElement.setAttribute("fill", qrOptions.fgColor);
+                textElement.setAttribute("font-size", "14");
+                textElement.textContent = qrOptions.textDescription;
+                svgElement.appendChild(textElement);
+
+                // 调整 SVG 的 viewBox 以包含文字
+                const newHeight = qrOptions.size + 40; // 为文字留出空间
+                svgElement.setAttribute('viewBox', `0 0 ${qrOptions.size} ${newHeight}`);
+                svgElement.setAttribute('height', newHeight);
+
+                console.log('文字描述已添加到 QR 码');
             }
         }
 
-        // 在 SVG 生成完成后，添加文字描述
-        if (qrOptions.textDescriptionEnabled && qrOptions.textDescription) {
-            const textPadding = 20; // 文字和二维码之间的固定间距
-            const fontSize = 14;
-            const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            textElement.setAttribute("text-anchor", "middle");
-            textElement.setAttribute("font-size", fontSize);
-            textElement.setAttribute("fill", qrOptions.fgColor);
-            textElement.setAttribute("x", "50%");
-
-            const textY = qrOptions.size + textPadding;
-            const viewBoxHeight = qrOptions.size + textPadding + fontSize;
-
-            textElement.setAttribute("y", textY);
-            textElement.textContent = qrOptions.textDescription;
-
-            // 创建一个新的 SVG 元素来包含原始的二维码和文字描述
-            const newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            newSvg.setAttribute("width", "100%");
-            newSvg.setAttribute("height", "100%");
-            newSvg.setAttribute("viewBox", `0 0 ${qrOptions.size} ${viewBoxHeight}`);
-            newSvg.style.display = "block";
-
-            // 将原始的 SVG 内容移动到新的 SVG 中
-            while (svgElement.firstChild) {
-                newSvg.appendChild(svgElement.firstChild);
-            }
-
-            // 添加文字元素
-            newSvg.appendChild(textElement);
-
-            // 替换原始的 SVG 元素
-            svgElement.parentNode.replaceChild(newSvg, svgElement);
-            svgElement = newSvg;
-
-            console.log('文字描述已添加');
-            console.log('SVG viewBox:', svgElement.getAttribute('viewBox'));
-        }
-
-        qrDescription.textContent = inputType === 'url' ? '生成的URL二维码' : 
-                                    inputType === 'file' ? '生成的文件二维码' : '生成的文本二维码';
+        qrDescription.textContent = inputType === 'url' ? getTranslation('generatedUrlQRCode') : 
+                                    inputType === 'file' ? getTranslation('generatedFileQRCode') : 
+                                    getTranslation('generatedTextQRCode');
         
         document.getElementById('downloadBtn').disabled = false;
         document.getElementById('shareBtn').disabled = false;
 
-        showToast('二维码生成成功', 'success');
+        console.log('二维码生成完成');
+        showToast(getTranslation('qrCodeGeneratedSuccess'), 'success');
     } catch (error) {
         console.error('生成二维码时出错:', error);
-        showToast('生成二维码失败，请重试', 'error');
+        showToast(getTranslation('qrCodeGenerationFailed'), 'error');
     }
 }
+
+console.log('qrGenerator.js 执行结束');
